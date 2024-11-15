@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
-import { User } from '../models/userModel'
+import { UserSchema } from '../models/userModel'
+
+const User = mongoose.model('User', UserSchema)
 
 export const addNewUser = async(req, res) => {
     let newUser = new User(req.body)
