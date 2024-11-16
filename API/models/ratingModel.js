@@ -11,7 +11,7 @@ export const RatingSchema = new Schema({
   date: {type: Date, required: true },
 }, {timestamps: true });
 
-RatingSchema.index({ userId: 1, categoryId: 1, subCategoryId: 1, date: 1 }, {unique: true });
+RatingSchema.index({ userId: 1, categoryId: 1, subcategoryId: 1, date: 1 }, {unique: true });
 
 
 
