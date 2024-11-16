@@ -6,10 +6,14 @@ import routes from './routes/wellnessRoutes'
 
 const app = express();
 const PORT = 4000;
+//const mongoUri = "mongodb+srv://mongodb:mongodb@cluster0.fjfss.mongodb.net/?retryWrites=true$w=majority" || "mongodb://localhost:27017/wellnessDb";
+//const mongoUri = "mongodb+srv://mongodb:mongodb@cluster0.fjfss.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" || "mongodb://localhost:27017/wellnessDB";
+//const mongoUri = "mongodb+srv://mongodb:mongodb@cluster0.fjfss.mongodb.net/wellnessDB" // this one works locally
+const mongoUri = "mongodb://localhost:27017/wellnessDB";
 
 // mongo connection
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/wellnessDB')
+mongoose.connect(mongoUri)
 
 // bodyparser
 app.use(bodyparser.urlencoded({ extended: true}))

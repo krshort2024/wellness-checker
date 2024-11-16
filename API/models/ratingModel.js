@@ -7,6 +7,7 @@ export const RatingSchema = new Schema({
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true},
   subcategoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category.SubCategories', required: true },
   rating: {type: Number, min: 1, max: 5, required: true },
+  reflection: { type: String },
   date: {type: Date, required: true },
 }, {timestamps: true });
 

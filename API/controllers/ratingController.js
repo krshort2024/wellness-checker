@@ -4,12 +4,68 @@ import { CategorySchema } from "../models/categoryModel";
 import { SubCategorySchema } from "../models/subcategoryModel";
 import { RatingSchema } from "../models/ratingModel";
 
+// this holds the detail rate data for a user / category / subcategory / date
 const User = mongoose.model('User', UserSchema);
 const Category = mongoose.model('Category', CategorySchema);
 const SubCategory = mongoose.model('SubCategory', SubCategorySchema);
 const Rating = mongoose.model('Rating', RatingSchema);
 
-export const addRateSubCategory = async (req, res) => {
+
+export const getRates = async ( req, res ) => {
+  try {
+    const rates = await Rating.find({})
+    res.json(rates)
+  } catch (err) {
+    res.send(err)
+  }
+}
+
+// export const getOneRateForUser =async ( req, res ) => {
+//   const { userId, categoryId, subcategoryId, date } = req.params;
+
+//   // Check if the user exists
+//   const user = await User.findById(userId);
+//   if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//   }
+
+//   // Check if the subcategory exists
+//   const subcategory = await SubCategory.findById(subcategoryId);
+//   if (!subcategory) {
+//     return res.status(404).json({ message: "Subcategory not found" });
+//   }
+
+// //   // Check if the category exists
+// //   const category = await Category.findById(categoryId);
+// //   if (!category) {
+// //     return res.status(404).json({ message: "Category not found" });
+// //   }
+
+// //  try {
+// //     // Parse the date to a valid format
+// //     const parsedDate = new Date(date);
+
+// //     // Query the database for ratings based on userId, categoryId, subcategoryId, and date
+// //     const rating = await Rating.find({
+// //       userId: mongoose.Types.ObjectId(userId),
+// //       categoryId: mongoose.Types.ObjectId(categoryId),
+// //       subcategoryId: mongoose.Types.ObjectId(subcategoryId),
+// //       date: { $gte: parsedDate.setHours(0, 0, 0, 0), $lt: parsedDate.setHours(23, 59, 59, 999) }
+// //     });
+
+// //     if (rating.length === 0) {
+// //       return res.status(404).json({ message: 'No ratings found for the given parameters' });
+// //     }
+
+// //     return res.status(200).json(rating);
+// //   } catch (error) {
+// //     console.error(error);
+// //     return res.status(500).json({ error: 'Internal server error' });
+// //   }
+  
+// }
+
+/* export const addRate = async (req, res) => {
     const { userId, categoryId, subcategoryId, rating } = req.body;
   
     // Validate the rating
@@ -51,6 +107,7 @@ export const addRateSubCategory = async (req, res) => {
           categoryId,
           subcategoryId,
           rating,
+          reflection,
           date: new Date(),
         });
         await newRating.save();
@@ -68,8 +125,8 @@ export const addRateSubCategory = async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-
-export const getAverage = async (req, res) => {
+ */
+/* export const getAverage = async (req, res) => {
     try {
       const category = await Category.findById(req.params.categoryId).populate('subCategories');
       if (!category) {
@@ -84,6 +141,6 @@ export const getAverage = async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   };
-
+ */
  
   
